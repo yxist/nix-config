@@ -1,18 +1,20 @@
-{ config, ... }:
-
+{ config, pkgs, ... }:
+let
+  sshKeys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcLBJfmOCkmzYgRMG7uxERuporltNCm52Ddk9BdsUNm"
+  ];
+in
 {
  users.users = {
    root = {
-     openssh.authorizedKeys = users.users.yxist.openssh.authorizedKeys;
-   }
+     openssh.authorizedKeys.keys = sshKeys;
+   };
    yxist = {
      isNormalUser = true;
      uid = 1000;
-     shell = pkgs.fish;
+     shell = pkgs.zsh;
      extraGroups = [ "wheel" ];
-     openssh.authorizedKeys.keys = [
-       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcLBJfmOCkmzYgRMG7uxERuporltNCm52Ddk9BdsUNm"
-     ];
+     openssh.authorizedKeys.keys = sshKeys;
    };
  };
 }

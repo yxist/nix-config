@@ -13,7 +13,7 @@
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "bandurka";
   networking.wireless.enable = true;
@@ -35,6 +35,7 @@
   time.timeZone = "Europe/Bratislava";
 
   environment.systemPackages = with pkgs; [
+    zsh
     vim
   ];
 
@@ -43,7 +44,7 @@
     passwordAuthentication = false;
   };
 
-  networking.firewall.enable = enable;
+  networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPorts = [ ];
 
@@ -58,10 +59,10 @@
 	start = ''
 	  ${pkgs.runtimeShell} $HOME/.hm-xsession &
 	  waitPID=$!
-	''
+	'';
       }
     ];
-  }
+  };
 
   system.stateVersion = "20.03";
 }
