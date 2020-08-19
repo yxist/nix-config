@@ -56,7 +56,7 @@ in
   };
   programs.termite = {
     enable = true;
-    font = "Terminus 11";
+    font = "terminus:pixelsize=11";
     fullscreen = false;
     sizeHints = false;
     backgroundColor = "#282828";
