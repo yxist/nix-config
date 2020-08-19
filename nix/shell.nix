@@ -7,6 +7,7 @@
     git
     htop
     libnotify
+    nixpkgs-pytools
   ];
   programs.zsh = {
     enable = true;
