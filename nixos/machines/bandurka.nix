@@ -64,8 +64,5 @@
     ];
   };
 
-  fonts.fontconfig.enable = true;
-  fonts.fontconfig.allowBitmaps = true;
-
   system.stateVersion = "20.03";
 }
