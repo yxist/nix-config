@@ -56,6 +56,30 @@ in
   };
   programs.termite = {
     enable = true;
+    font = "Terminus 11";
+    fullscreen = false;
+    sizeHints = false;
+    backgroundColor = "#282828";
+    foregroundColor = "#ebdbb2";
+    colorsExtra =
+      ''
+      color0  = #282828
+      color1  = #cc241d
+      color2  = #98971a
+      color3  = #d79921
+      color4  = #458588
+      color5  = #b16286
+      color6  = #689d6a
+      color7  = #a89984
+      color8  = #928374
+      color9  = #fb4934
+      color10 = #b2bb26
+      color11 = #fabd2f
+      color12 = #83a598
+      color13 = #d3869b
+      color14 = #8ec07c
+      color15 = #ebdbb2
+      '';
   };
   programs.rofi = {
     enable = true;
@@ -112,7 +136,7 @@ in
         padding-right = 1;
         module-margin-left = 1;
         module-margin-right = 1;
-        font-0 = "tamsyn:pixelsize=11;1";
+        font-0 = "terminus:pixelsize=11;1";
         font-1 = "siji:pixelsize=10;1";
         font-2 = "fixed:pixelsize=10;1";
         modules-left = "i3";
@@ -140,7 +164,7 @@ in
         padding-right = 1;
         module-margin-left = 1;
         module-margin-right = 1;
-        font-0 = "tamsyn:pixelsize=11;1";
+        font-0 = "terminus:pixelsize=11;1";
         font-1 = "siji:pixelsize=10;1";
         font-2 = "fixed:pixelsize=10;1";
         modules-left = "battery wlan eth";
@@ -179,18 +203,18 @@ in
         label-mode-foreground = "#000";
         label-mode-background = "\${colors.primary}";
         label-focused = "%index%";
-        label-focused-background = "\${module/bspwm.label-focused-background}";
-        label-focused-underline = "\${module/bspwm.label-focused-underline}";
-        label-focused-padding = "\${module/bspwm.label-focused-padding}"; # TODO TODO TODO
+        label-focused-background = "\${colors.background-alt}";
+        label-focused-underline = "\${colors.primary}";
+        label-focused-padding = 1;
         label-unfocused = "%index%";
-        label-unfocused-padding = "\${module/bspwm.label-occupied-padding}";
+        label-unfocused-padding = 1;
         label-visible = "%index%";
         label-visible-background = "\${self.label-focused-background}";
         label-visible-underline = "\${self.label-focused-underline}";
         label-visible-padding = "\${self.label-focused-padding}";
         label-urgent = "%index%";
-        label-urgent-background = "\${module/bspwm.label-urgent-background}";
-        label-urgent-padding = "\${module/bspwm.label-urgent-padding}";
+        label-urgent-background = "\${colors.alert}";
+        label-urgent-padding = 1;
         label-separator-padding = 0;
       };
 
