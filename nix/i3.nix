@@ -6,7 +6,7 @@ in
 {
   home.packages = with pkgs; [
     siji
-    terminus
+    terminus_font
     tamsyn
     # TODO termsyn
   ];
