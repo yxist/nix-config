@@ -17,7 +17,7 @@ in
     package = pkgs.i3-gaps;
     config = {
       modifier = mod;
-      fonts = [ "Terminus 12" ];
+      fonts = [ "Terminus" ];
       bars = [];
       gaps.outer = 0;
       gaps.inner = 4;
@@ -56,7 +56,7 @@ in
   };
   programs.termite = {
     enable = true;
-    font = "xos4 Terminus 12px";
+    font = "Terminus";
     fullscreen = false;
     sizeHints = false;
     backgroundColor = "#282828";
