@@ -18,7 +18,7 @@ in
     package = pkgs.i3-gaps;
     config = {
       modifier = mod;
-      fonts = [ "Terminus" ];
+      fonts = [ "Terminus (TTF)" ];
       bars = [];
       gaps.outer = 0;
       gaps.inner = 4;
