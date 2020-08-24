@@ -11,7 +11,7 @@ in
     tamsyn
   ];
 
-  fonts.fontconfig.enable = lib.mkForce true
+  fonts.fontconfig.enable = lib.mkForce true;
 
   xsession.enable = true;
   xsession.scriptPath = ".hm-xsession";
