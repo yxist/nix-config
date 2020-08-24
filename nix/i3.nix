@@ -9,16 +9,9 @@ in
     terminus_font
     terminus_font_ttf
     tamsyn
-
-    ${pkgs.fetchFromGitHub {
-      owner = "Tecate";
-      repo = "bitmap-fonts";
-      rev = "5c101c91bf2ed0039aad02f9bf76ddb2018b1f21";
-      sha256 = "0s119zln3yrhhscfwkjncj72cr68694643009aam63s2ng4hsmfl";
-    }}
   ];
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = lib.mkForce true
 
   xsession.enable = true;
   xsession.scriptPath = ".hm-xsession";
