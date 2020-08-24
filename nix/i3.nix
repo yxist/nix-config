@@ -7,7 +7,6 @@ in
   home.packages = with pkgs; [
     siji
     terminus_font
-    terminus_font_ttf
     tamsyn
     # TODO termsyn
   ];
