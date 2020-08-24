@@ -57,7 +57,7 @@ in
   };
   programs.termite = {
     enable = true;
-    font = "Terminus";
+    font = "Terminus 9";
     fullscreen = false;
     sizeHints = false;
     backgroundColor = "#282828";
