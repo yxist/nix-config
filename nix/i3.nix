@@ -11,6 +11,15 @@ in
     tamsyn
     # TODO termsyn
   ];
+
+  fonts.fonts = [ "${pkgs.fetchFromGitHub {
+    owner = "Tecate";
+    repo = "bitmap-fonts";
+    rev = "5c101c91bf2ed0039aad02f9bf76ddb2018b1f21";
+    sha256 = "0s119zln3yrhhscfwkjncj72cr68694643009aam63s2ng4hsmfl";
+  }}/bitmap" ];
+  fonts.fontconfig.allowBitmaps = true;
+
   xsession.enable = true;
   xsession.scriptPath = ".hm-xsession";
   xsession.windowManager.i3 = {
