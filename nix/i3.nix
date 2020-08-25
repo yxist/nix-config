@@ -6,7 +6,7 @@ in
 {
   home.packages = with pkgs; [
     terminus_font
-    tamsyn
+    siji
   ];
 
   fonts.fontconfig.enable = lib.mkForce true;
@@ -18,7 +18,7 @@ in
     package = pkgs.i3-gaps;
     config = {
       modifier = mod;
-      fonts = [ "Terminus (TTF)" ];
+      fonts = [ "Terminus 9" ];
       bars = [];
       gaps.outer = 0;
       gaps.inner = 4;
@@ -159,7 +159,7 @@ in
         line-size = 1;
         line-color = "#f00";
         border-size = 4;
-        border-bottom-size = 0;
+        border-top-size = 0;
         border-color = "#00000000"; 
         padding-left = 1;
         padding-right = 1;
