@@ -10,6 +10,7 @@ in
   home.packages = with pkgs; [
     terminus_font
     siji
+    gohufont
   ];
 
   fonts.fontconfig.enable = lib.mkForce true;
