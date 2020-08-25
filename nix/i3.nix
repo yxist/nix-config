@@ -4,6 +4,9 @@ let
   mod = "Mod4";
 in
 {
+  imports = [
+    ./xst.nix
+  ];
   home.packages = with pkgs; [
     terminus_font
     siji
@@ -25,7 +28,7 @@ in
       window.border = 0;
       window.titlebar = false;
       keybindings = lib.mkOptionDefault {
-        "${mod}+Return"  = "exec --no-startup-id termite";
+        "${mod}+Return"  = "exec --no-startup-id xst";
         "${mod}+p"       = "exec --no-startup-id xset dpms force off";
         "${mod}+d"       = "exec --no-startup-id rofi -show run";
         "${mod}+Shift+d" = "exec --no-startup-id rofi -show drun";
@@ -54,33 +57,6 @@ in
     "*color14" = "#8ec07c";
     "*color7" = "#a89984";
     "*color15" = "#ebdbb2";
-  };
-  programs.termite = {
-    enable = true;
-    font = "Terminus 9";
-    fullscreen = false;
-    sizeHints = false;
-    backgroundColor = "#282828";
-    foregroundColor = "#ebdbb2";
-    colorsExtra =
-      ''
-      color0  = #282828
-      color1  = #cc241d
-      color2  = #98971a
-      color3  = #d79921
-      color4  = #458588
-      color5  = #b16286
-      color6  = #689d6a
-      color7  = #a89984
-      color8  = #928374
-      color9  = #fb4934
-      color10 = #b2bb26
-      color11 = #fabd2f
-      color12 = #83a598
-      color13 = #d3869b
-      color14 = #8ec07c
-      color15 = #ebdbb2
-      '';
   };
   programs.rofi = {
     enable = true;
