@@ -8,6 +8,7 @@ in
     xst
   ];
   xresources.properties = {
+    "st.font" = "Terminus:pixselsize=12";
     "st.termname" = "xterm-256color";
     "st.borderless" = 1;
   };
