@@ -13,7 +13,7 @@
     enable = true;
     enableCompletion = true;
     localVariables = {
-      SPACESHIP_CHAR_SYMBOL = '»';
+      SPACESHIP_CHAR_SYMBOL = "»";
     };
     plugins = [
       {
