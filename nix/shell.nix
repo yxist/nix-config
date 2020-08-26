@@ -12,6 +12,9 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    programs.zsh.localVariables = {
+      SPACESHIP_CHAR_SYMBOL = '»';
+    };
     plugins = [
       {
         name = "auto-notify";
