@@ -12,7 +12,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    programs.zsh.localVariables = {
+    localVariables = {
       SPACESHIP_CHAR_SYMBOL = '»';
     };
     plugins = [
