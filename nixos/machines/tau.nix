@@ -16,7 +16,7 @@
   networking.enableIPv6 = true;
   networking.interfaces.ens3.useDHCP = true;
   networking.interfaces.ens3.ipv6.addresses = [{address = "2a01:4f8:c0c:4109::"; prefixLength = 64;}];
-  networking.interfaces.ens3.ipv6.routes = [{address = "fe80::1"; prefixLength = 128;}];
+  networking.interfaces.ens3.ipv6.routes = [{address = "::"; prefixLength = 0; via = "fe80::1";}];
 
   i18n.defaultLocale = "en_US.UTF-8";
 
