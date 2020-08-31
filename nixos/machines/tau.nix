@@ -8,21 +8,22 @@
 
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "tau";
 
   networking.useDHCP = false;
-  networking.interfaces.ens10.useDHCP = true;
+  networking.interfaces.ens3.useDHCP = true;
+  networking.interfaces.ens3.ipv6.addresses = ["2a01:4f8:c0c:4109::/64"];
 
   i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/Bratislava";
 
   environment.systemPackages = with pkgs; [
+    git
+    gnumake
+    htop
     zsh
     vim
   ];
@@ -57,6 +58,7 @@
 
   services.postgresql = {
     enable = true;
+    enableTCPIP = false;
   };
 
   networking.firewall.enable = true;
