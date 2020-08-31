@@ -27,14 +27,14 @@
     vim
   ];
 
-  networking.wireguard = {
-    enable = true;
-    interfaces = {
-      "wg0" = {
-        ips = ["10.21.0.1/24"];
-      };
-    };
-  };
+  #networking.wireguard = {
+  #  enable = true;
+  #  interfaces = {
+  #    "wg0" = {
+  #      ips = ["10.21.0.1/24"];
+  #    };
+  #  };
+  #};
 
   services.openssh = {
     enable = true;
