@@ -66,7 +66,7 @@
     };
   };
   
-  users.groups.xdd-sk-certs.members = [ "prosody" "murmur" ]
+  users.groups.xdd-sk-certs.members = [ "prosody" "murmur" ];
   security.acme = {
     acceptTerms = true;
     email = "letsencrypt@xdd.sk";
