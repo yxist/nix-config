@@ -61,7 +61,7 @@
     enable = true;
     virtualHosts = {
       "tau.xdd.sk" = {
-        forceSSL = true;
+        #forceSSL = true;
 	#enableACME = true;
 	locations."/" = {
 	  root = "/var/www/tau.xdd.sk";
