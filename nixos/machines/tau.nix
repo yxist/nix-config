@@ -60,8 +60,8 @@
       "xdd.sk" = {
         domain = "xdd.sk";
 	enabled = true;
-	ssl.key = ${config.security.acme.certs."xdd.sk".directory}/key.pem;
-	ssl.cert = ${config.security.acme.certs."xdd.sk".directory}/fullchain.pem;
+	ssl.key = "${config.security.acme.certs."xdd.sk".directory}/key.pem";
+	ssl.cert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
 	};
     };
   };
