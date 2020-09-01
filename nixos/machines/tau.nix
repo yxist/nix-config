@@ -47,20 +47,27 @@
 
   services.murmur = {
     enable = true;
+    hostName = "::";
     clientCertRequired = true;
   };
 
   services.prosody = {
     enable = true;
   };
-
+  
+  security.acme.acceptTerms = true;
+  security.acme.email = "letsencrypt@xdd.sk";
   services.nginx = {
     enable = true;
-  };
-
-  services.postgresql = {
-    enable = true;
-    enableTCPIP = false;
+    virtualHosts = {
+      "tau.xdd.sk" = {
+        forceSSL = true;
+	#enableACME = true;
+	locations."/" = {
+	  root = "/var/www/tau.xdd.sk";
+	};
+      };
+    };
   };
 
   networking.firewall.enable = true;
