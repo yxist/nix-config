@@ -71,6 +71,8 @@
   };
 
   networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [ 5222 5269 64738 ];
+  networking.firewall.allowedUDPPorts = [ 64738 ];
 
   system.stateVersion = "20.03";
 }
