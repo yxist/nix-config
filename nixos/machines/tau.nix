@@ -50,6 +50,9 @@
     bandwidth = 140000;
     hostName = "";
     clientCertRequired = true;
+    sslCa = /var/lib/acme/.lego/xdd.sk/certificates/xdd.sk.issuer.crt;
+    sslCert = /var/lib/acme/.lego/xdd.sk/certificates/xdd.sk.crt;
+    sslKey = /var/lib/acme/.lego/xdd.sk/certificates/xdd.sk.key;
   };
 
   services.prosody = {
@@ -58,8 +61,8 @@
       "xdd.sk" = {
         domain = "xdd.sk";
 	enabled = true;
-	ssl.cert = "";
-	ssl.key = "";
+	ssl.cert = /var/lib/acme/.lego/xdd.sk/certificates/xdd.sk.crt;
+	ssl.key = /var/lib/acme/.lego/xdd.sk/certificates/xdd.sk.key;
       };
     };
   };
