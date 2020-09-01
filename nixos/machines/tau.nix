@@ -47,7 +47,7 @@
 
   services.murmur = {
     enable = true;
-    bandwidth = 130000;
+    bandwidth = 140000;
     hostName = "";
     clientCertRequired = true;
   };
