@@ -66,8 +66,16 @@
     };
   };
   
-  security.acme.acceptTerms = true;
-  security.acme.email = "letsencrypt@xdd.sk";
+  users.groups.xdd-sk-certs.members = [ "prosody" "murmur" ]
+  security.acme = {
+    acceptTerms = true;
+    email = "letsencrypt@xdd.sk";
+    certs."xdd.sk" = {
+      allowKeysForGroup = true;
+      group = "xdd-sk-certs";
+      postRun = "systemctl reload-or-restart prosody; systemctl reload-or-restart murmur";
+    };
+  };
   services.nginx = {
     enable = true;
     virtualHosts = {
