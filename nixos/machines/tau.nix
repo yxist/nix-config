@@ -47,7 +47,7 @@
 
   services.murmur = {
     enable = true;
-    hostName = "::";
+    hostName = "";
     clientCertRequired = true;
   };
 
