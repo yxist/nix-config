@@ -54,6 +54,14 @@
 
   services.prosody = {
     enable = true;
+    virtualHosts = {
+      "xdd.sk" = {
+        domain = "xdd.sk";
+	enabled = true;
+	ssl.cert = "";
+	ssl.key = "";
+      };
+    };
   };
   
   security.acme.acceptTerms = true;
@@ -61,11 +69,11 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "tau.xdd.sk" = {
+      "xdd.sk" = {
         forceSSL = true;
 	enableACME = true;
 	locations."/" = {
-	  root = "/var/www/tau.xdd.sk";
+	  root = "/var/www/xdd.sk";
 	};
       };
     };
