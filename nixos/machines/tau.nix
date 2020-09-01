@@ -23,6 +23,7 @@
   time.timeZone = "Europe/Bratislava";
 
   environment.systemPackages = with pkgs; [
+    ncdu
     git
     gnumake
     htop
@@ -39,6 +40,27 @@
   #  };
   #};
 
+  services.netdata = {
+    enable = true;
+  };
+
+  services.grafana = {
+    enable = true;
+  };
+
+  services.postgresql = {
+    enable = true;
+    enableTCPIP = false;
+    extraPlugins = [ pkgs.timescaledb ];
+    extraConfig = "shared_preload_libraries = 'timescaledb'";
+  };
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = ["/"];
+    interval = "monthly";
+  };
+
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
@@ -49,6 +71,7 @@
     enable = true;
     bandwidth = 140000;
     hostName = "";
+    registerName = "xdd.sk";
     clientCertRequired = true;
     sslKey = "${config.security.acme.certs."xdd.sk".directory}/key.pem";
     sslCert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
@@ -59,10 +82,10 @@
     virtualHosts = {
       "xdd.sk" = {
         domain = "xdd.sk";
-	enabled = true;
-	ssl.key = "${config.security.acme.certs."xdd.sk".directory}/key.pem";
-	ssl.cert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
-	};
+        enabled = true;
+        ssl.key = "${config.security.acme.certs."xdd.sk".directory}/key.pem";
+        ssl.cert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
+      };
     };
   };
   
@@ -81,10 +104,10 @@
     virtualHosts = {
       "xdd.sk" = {
         forceSSL = true;
-	enableACME = true;
-	locations."/" = {
-	  root = "/var/www/xdd.sk";
-	};
+        enableACME = true;
+        locations."/" = {
+          root = "/var/www/xdd.sk";
+        };
       };
     };
   };
