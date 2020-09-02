@@ -52,7 +52,6 @@
       type = "postgres";
       user = "grafana";
       host = "/run/postgresql/";
-      port = 5432;
     };
   };
 
