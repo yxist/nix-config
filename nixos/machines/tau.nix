@@ -80,6 +80,12 @@
           "DATABASE grafana" = "ALL PRIVILEGES";
         };
       }
+      {
+        name = "mon_readonly";
+        ensurePermissions = {
+          "DATABASE mon" = "SELECT";
+        };
+      }
     ];
     identMap =
       ''
