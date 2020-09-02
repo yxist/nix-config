@@ -46,6 +46,12 @@
 
   services.grafana = {
     enable = true;
+    rootUrl = "https://mon.xdd.sk/";
+    domain = "mon.xdd.sk";
+    database = {
+      type = "postgres";
+      user = "grafana";
+    };
   };
 
   services.postgresql = {
@@ -53,6 +59,33 @@
     enableTCPIP = false;
     extraPlugins = [ pkgs.timescaledb ];
     extraConfig = "shared_preload_libraries = 'timescaledb'";
+    ensureDatabases = [ "mon" "grafana" "prosody" "murmur" ];
+    ensureUsers = [
+      {
+        name = "prosody";
+        ensurePermissions = {
+          "DATABASE prosody" = "ALL PRIVILEGES";
+        };
+      }
+      {
+        name = "murmur";
+        ensurePermissions = {
+          "DATABASE murmur" = "ALL PRIVILEGES";
+        };
+      }
+      {
+        name = "grafana";
+        ensurePermissions = {
+          "DATABASE grafana" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+    identMap =
+      ''
+      mymap prosody prosody
+      mymap murmur murmur
+      mymap grafana grafana
+      '';
   };
 
   services.btrfs.autoScrub = {
@@ -75,6 +108,12 @@
     clientCertRequired = true;
     sslKey = "${config.security.acme.certs."xdd.sk".directory}/key.pem";
     sslCert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
+    extraConfig =
+      ''
+      dbDriver=QPSQL
+      dbName=murmur
+      dbUsername=murmur
+      '';
   };
 
   services.prosody = {
@@ -87,6 +126,16 @@
         ssl.cert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
       };
     };
+    extraModules = [ "storage_sql" ];
+    extraConfig =
+      ''
+      storage = "sql"
+      sql = {
+          driver = "PostgreSQL";
+          database = "prosody";
+          username = "prosody";
+      }
+      '';
   };
   
   users.groups.xdd-sk-certs.members = [ "prosody" "murmur" ];
@@ -107,6 +156,14 @@
         enableACME = true;
         locations."/" = {
           root = "/var/www/xdd.sk";
+        };
+      };
+      "mon.xdd.sk" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "https://127.0.0.1:3000"; # grafana
+          proxyWebsockets = true;
         };
       };
     };
