@@ -51,6 +51,8 @@
     database = {
       type = "postgres";
       user = "grafana";
+      host = "/run/postgresql/";
+      port = 5432;
     };
   };
 
@@ -113,6 +115,7 @@
       dbDriver=QPSQL
       dbName=murmur
       dbUsername=murmur
+      dbPort=5432
       '';
   };
 
