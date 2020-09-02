@@ -112,6 +112,7 @@
     extraConfig =
       ''
       dbDriver=QPSQL
+      database=murmur
       dbName=murmur
       dbUsername=murmur
       dbPort=5432
