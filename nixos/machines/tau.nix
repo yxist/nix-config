@@ -96,6 +96,7 @@
   };
 
   services.pgmanage = {
+    allowCustomConnections = true;
     enable = true;
   };
 
