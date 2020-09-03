@@ -83,7 +83,7 @@
       {
         name = "mon_readonly";
         ensurePermissions = {
-          "DATABASE mon" = "SELECT";
+          "DATABASE mon" = "CONNECT";
         };
       }
     ];
@@ -93,6 +93,10 @@
       mymap murmur murmur
       mymap grafana grafana
       '';
+  };
+
+  services.pgmanage = {
+    enable = true;
   };
 
   services.btrfs.autoScrub = {
@@ -157,6 +161,7 @@
       postRun = "systemctl reload-or-restart prosody; systemctl reload-or-restart murmur";
     };
   };
+
   services.nginx = {
     enable = true;
     virtualHosts = {
