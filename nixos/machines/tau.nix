@@ -60,40 +60,19 @@
     enableTCPIP = false;
     extraPlugins = [ pkgs.timescaledb ];
     extraConfig = "shared_preload_libraries = 'timescaledb'";
-    ensureDatabases = [ "mon" "grafana" "prosody" "murmur" ];
-    ensureUsers = [
-      {
-        name = "prosody";
-        ensurePermissions = {
-          "DATABASE prosody" = "ALL PRIVILEGES";
-        };
-      }
-      {
-        name = "murmur";
-        ensurePermissions = {
-          "DATABASE murmur" = "ALL PRIVILEGES";
-        };
-      }
-      {
-        name = "grafana";
-        ensurePermissions = {
-          "DATABASE grafana" = "ALL PRIVILEGES";
-        };
-      }
-      {
-        name = "mon_readonly";
-        ensurePermissions = {
-          "DATABASE mon" = "CONNECT";
-        };
-      }
-    ];
-    identMap =
-      ''
-      mymap prosody prosody
-      mymap murmur murmur
-      mymap grafana grafana
-      '';
   };
+  systemd.services.postgresql.postStart = lib.mkAfter ''
+    $PSQL -tAc 'REVOKE ALL ON DATABASE template1 FROM public' || true
+    $PSQL template1 -tAc 'REVOKE ALL ON SCHEMA public FROM public' || true
+    $PSQL -tAc 'CREATE DATABASE prosody' || true
+    $PSQL -tAc 'CREATE DATABASE murmur' || true
+    $PSQL -tAc 'CREATE DATABASE grafana' || true
+    $PSQL -tAc 'CREATE DATABASE mon' || true
+    $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE prosody TO "prosody"' || true
+    $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE murmur TO "murmur"' || true
+    $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE grafana TO "grafana"' || true
+    $PSQL -tAc 'GRANT CONNECT ON DATABASE grafana TO "mon_readonly"' || true
+  '';
 
   services.pgmanage = {
     allowCustomConnections = true;
