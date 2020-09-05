@@ -66,7 +66,7 @@
     $PSQL template1 -tAc 'REVOKE ALL ON SCHEMA public FROM public' || true
     $PSQL template1 -tAc 'ALTER DEFAULT PRIVILEGES REVOKE ALL ON TABLES FROM public' || true
 
-    ${concatMapStrings (database: ''
+    ${lib.concatMapStrings (database: ''
       $PSQL -tAC 'CREATE ROLE ${database} WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOCREATEUSER INHERIT NOLOGIN' || true
       $PSQL -tAc "SELECT 1 FROM pg_database WHERE datname = '${database}'" | grep -q 1 || $PSQL -tAc 'CREATE DATABASE "${database}"'
       $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE ${database} TO "${database}"' || true
