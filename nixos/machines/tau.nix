@@ -129,7 +129,6 @@
         ssl.cert = "${config.security.acme.certs."xdd.sk".directory}/fullchain.pem";
       };
     };
-    extraModules = [ "storage_sql" ];
     extraConfig =
       ''
       storage = "sql"
