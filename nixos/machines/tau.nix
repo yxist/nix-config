@@ -54,6 +54,7 @@
       host = "/run/postgresql/";
     };
   };
+  systemd.services.grafana.requires = [ "postgresql.service" ];
 
   services.postgresql = {
     enable = true;
@@ -118,6 +119,7 @@
       dbPort=5432
       '';
   };
+  systemd.services.murmur.requires = [ "postgresql.service" ];
 
   services.prosody = {
     enable = true;
@@ -139,6 +141,7 @@
       }
       '';
   };
+  systemd.services.prosody.requires = [ "postgresql.service" ];
   
   users.groups.xdd-sk-certs.members = [ "prosody" "murmur" ];
   security.acme = {
