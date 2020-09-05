@@ -67,20 +67,20 @@
     $PSQL template1 -tAc 'ALTER DEFAULT PRIVILEGES REVOKE ALL ON TABLES FROM public' || true
 
     ${lib.concatMapStrings (database: ''
-      $PSQL -tAc 'CREATE ROLE ${database} WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOCREATEUSER INHERIT NOLOGIN' || true
+      $PSQL -tAc 'CREATE ROLE ${database} WITH NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOLOGIN' || true
       $PSQL -tAc "SELECT 1 FROM pg_database WHERE datname = '${database}'" | grep -q 1 || $PSQL -tAc 'CREATE DATABASE "${database}"'
       $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE ${database} TO "${database}"' || true
       $PSQL ${database} -tAc 'GRANT ALL PRIVILEGES ON SCHEMA public FROM "${database}"' || true
     '') [ "prosody" "murmur" "grafana"]}
 
     $PSQL -tAc "SELECT 1 FROM pg_database WHERE datname = 'mon'" | grep -q 1 || $PSQL -tAc 'CREATE DATABASE "mon"'
-    $PSQL -tAc 'CREATE ROLE mon_readonly WITH NOSUPERUSER NOCREATEDB NOCREATEROLE NOCREATEUSER INHERIT NOLOGIN' || true
+    $PSQL -tAc 'CREATE ROLE mon_readonly WITH NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOLOGIN' || true
     $PSQL -tAc 'GRANT CONNECT ON DATABASE mon TO "mon_readonly"' || true
     $PSQL mon -tAc 'GRANT USAGE ON SCHEMA public' || true
   '';
 
   services.pgmanage = {
-    allowCustomConnections = true;
+    allowCustcmConnections = true;
     enable = true;
   };
 
