@@ -60,6 +60,11 @@
     enableTCPIP = false;
     extraPlugins = [ pkgs.timescaledb ];
     extraConfig = "shared_preload_libraries = 'timescaledb'";
+    identMap =''
+      mymap prosody prosody
+      mymap murmur murmur
+      mymap grafana grafana
+    '';
   };
   systemd.services.postgresql.postStart = lib.mkAfter ''
     $PSQL -tAc 'REVOKE ALL ON DATABASE template1 FROM public' || true
