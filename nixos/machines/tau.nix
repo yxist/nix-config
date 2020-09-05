@@ -80,7 +80,7 @@
   '';
 
   services.pgmanage = {
-    allowCustcmConnections = true;
+    allowCustomConnections = true;
     enable = true;
   };
 
