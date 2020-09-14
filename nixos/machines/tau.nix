@@ -40,8 +40,27 @@
   #  };
   #};
 
+  services.taskserver = {
+    enable = false;
+    fqdn = "xdd.sk";
+    ipLog = true;
+    listenHost = "::";
+    organisations."xdd.sk".users = [ "yxist" ];
+  };
+
   services.netdata = {
     enable = true;
+  };
+
+  services.gitea = {
+    enabled = true;
+    enableUnixSocket = true;
+    database = {
+      socket = "/run/postgresql/.s.PGSQL.5432";
+      name = "gitea";
+      user = "gitea";
+      type = "postgres";
+    };
   };
 
   services.grafana = {
@@ -77,7 +96,7 @@
       $PSQL -tAc "SELECT 1 FROM pg_database WHERE datname = '${database}'" | grep -q 1 || $PSQL -tAc 'CREATE DATABASE "${database}"'
       $PSQL -tAc 'GRANT ALL PRIVILEGES ON DATABASE ${database} TO "${database}"' || true
       $PSQL ${database} -tAc 'GRANT ALL PRIVILEGES ON SCHEMA public TO ${database}' || true
-    '') [ "prosody" "murmur" "grafana"]}
+    '') [ "prosody" "murmur" "grafana" "gitea" ]}
 
     $PSQL -tAc "SELECT 1 FROM pg_database WHERE datname = 'mon'" | grep -q 1 || $PSQL -tAc 'CREATE DATABASE "mon"'
     $PSQL -tAc 'CREATE ROLE mon_readonly WITH NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN' || true
@@ -176,7 +195,7 @@
   };
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 5222 5269 64738 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 5222 5269 53589 64738 ];
   networking.firewall.allowedUDPPorts = [ 443 64738 ];
 
   system.stateVersion = "20.03";
