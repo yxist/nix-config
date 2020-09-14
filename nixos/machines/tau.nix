@@ -54,6 +54,7 @@
 
   services.gitea = {
     enable = true;
+    httpAddress = "127.0.0.1";
     httpPort = 3001;
     database = {
       type = "postgres";
