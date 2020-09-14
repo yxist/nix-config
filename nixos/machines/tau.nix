@@ -54,7 +54,7 @@
 
   services.gitea = {
     enabled = true;
-    enableUnixSocket = true;
+    httpPort = 3001;
     database = {
       socket = "/run/postgresql/.s.PGSQL.5432";
       name = "gitea";
