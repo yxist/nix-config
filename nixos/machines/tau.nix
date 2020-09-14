@@ -56,9 +56,6 @@
     enable = true;
     httpPort = 3001;
     database = {
-      socket = "/run/postgresql/.s.PGSQL.5432";
-      name = "gitea";
-      user = "gitea";
       type = "postgres";
     };
   };
