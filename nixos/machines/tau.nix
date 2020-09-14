@@ -68,6 +68,7 @@
     rootUrl = "https://mon.xdd.sk/";
     domain = "mon.xdd.sk";
     database = {
+      createDatabase = false;
       type = "postgres";
       user = "grafana";
       host = "/run/postgresql/";
