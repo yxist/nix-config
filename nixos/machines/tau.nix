@@ -54,6 +54,8 @@
 
   services.gitea = {
     enable = true;
+    user = "git";
+    disableRegistration = true;
     httpAddress = "127.0.0.1";
     httpPort = 3001;
     database = {
@@ -79,9 +81,7 @@
     extraPlugins = [ pkgs.timescaledb ];
     extraConfig = "shared_preload_libraries = 'timescaledb'";
     identMap =''
-      mymap prosody prosody
-      mymap murmur murmur
-      mymap grafana grafana
+      mymap git gitea
     '';
   };
   systemd.services.postgresql.postStart = lib.mkAfter ''
