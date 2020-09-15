@@ -67,7 +67,7 @@
   users.users."git" = {
     isSystemUser = true;
     home = "/var/lib/gitea";
-    shell = "pkgs.bashInteractive";
+    shell = pkgs.bashInteractive;
   };
 
   services.grafana = {
