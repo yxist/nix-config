@@ -87,7 +87,7 @@
       local all all              ident  map=local
       host  all all 127.0.0.1/32 md5
       host  all all ::1/128      md5
-    ''
+    '';
     identMap =''
       local git gitea
     '';
