@@ -60,7 +60,7 @@
     httpAddress = "127.0.0.1";
     httpPort = 3001;
     database = {
-      host = "localhost";
+      socket = "/run/postgresql/";
       createDatabase = false;
       type = "postgres";
     };
@@ -83,8 +83,13 @@
     enableTCPIP = false;
     extraPlugins = [ pkgs.timescaledb ];
     extraConfig = "shared_preload_libraries = 'timescaledb'";
+    authentication = lib.mkForce ''
+      local all all              ident  map=local
+      host  all all 127.0.0.1/32 md5
+      host  all all ::1/128      md5
+    ''
     identMap =''
-      mymap git gitea
+      local git gitea
     '';
   };
   systemd.services.postgresql.postStart = lib.mkAfter ''
