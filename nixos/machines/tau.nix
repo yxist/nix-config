@@ -60,7 +60,7 @@
     httpAddress = "127.0.0.1";
     httpPort = 3001;
     database = {
-      socket = "/run/postgresql/"
+      socket = "/run/postgresql/";
       createDatabase = false;
       type = "postgres";
     };
