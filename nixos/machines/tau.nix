@@ -90,6 +90,10 @@
     '';
     identMap =''
       local git gitea
+      local grafana grafana
+      local murmur murmur
+      local prosody prosody
+      local postgresql postgresql
     '';
   };
   systemd.services.postgresql.postStart = lib.mkAfter ''
