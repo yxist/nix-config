@@ -52,7 +52,6 @@
     enable = true;
   };
 
-  users.users."git".isSystemUser = true;
   services.gitea = {
     enable = true;
     user = "git";
@@ -64,6 +63,10 @@
       createDatabase = false;
       type = "postgres";
     };
+  };
+  users.users."git" = {
+    isSystemUser = true;
+    home = "/var/lib/gitea";
   };
 
   services.grafana = {
