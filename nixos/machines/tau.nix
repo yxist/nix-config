@@ -93,7 +93,7 @@
       local grafana grafana
       local murmur murmur
       local prosody prosody
-      local postgresql postgresql
+      local postgres postgres
     '';
   };
   systemd.services.postgresql.postStart = lib.mkAfter ''
