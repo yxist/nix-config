@@ -8,6 +8,8 @@ in
     ./xst.nix
   ];
   home.packages = with pkgs; [
+    inotify-tools
+    flashfocus
     terminus_font
     siji
   ];
@@ -79,7 +81,7 @@ in
   };
   services.polybar = {
     enable = true;
-    script = "polybar top & polybar bottom &";
+    script = "until inotifywait -t 3 -e create $XDG_RUNTIME_DIR; polybar top & polybar bottom &"; # TODODOODOD
     package = pkgs.polybar.override {
       pulseSupport = true;
       mpdSupport = true;

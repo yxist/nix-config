@@ -3,6 +3,7 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
+    ../mail.nix
     ../users.nix
   ];
 
@@ -58,6 +59,8 @@
     disableRegistration = true;
     httpAddress = "127.0.0.1";
     httpPort = 3001;
+    domain = "git.xdd.sk";
+    rootUrl = "https://git.xdd.sk/"
     database = {
       socket = "/run/postgresql/";
       createDatabase = false;
@@ -120,7 +123,7 @@
 
   services.pgmanage = {
     allowCustomConnections = true;
-    enable = true;
+    enable = false;
   };
 
   services.btrfs.autoScrub = {
@@ -202,6 +205,14 @@
         enableACME = true;
         locations."/" = {
           proxyPass = "http://127.0.0.1:3000"; # grafana
+          proxyWebsockets = true;
+        };
+      };
+      "git.xdd.sk" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:3001"; # gitea
           proxyWebsockets = true;
         };
       };
